@@ -9,6 +9,7 @@ A fancy RGB LED matrix wall clock driven with a RaspberryPi.
 
 # Dependencies
 Python libraries
+- [rpi-rgb-led-matrix](https://github.com/hzeller/rpi-rgb-led-matrix)
 - requests
-- futures
 - apscheduler
+- daemonify
