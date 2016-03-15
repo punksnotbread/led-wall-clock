@@ -1,3 +1,4 @@
+import logging
 import requests
 from xml.etree import ElementTree
 
@@ -18,15 +19,17 @@ class Weather:
         self.update()
 
     def update(self):
-        print "Updating weather"
+        logging.info("Updating weather")
 
         weather_req = requests.get(WEATHER_URL, params={'stid': self._station})
         if weather_req.ok:
             weather = ElementTree.fromstring(weather_req.content)
             self.cur_temp = float(weather.find("temp_f").text)
+            logging.info("Current temperature %1.1f" % self.cur_temp)
 
         forecast_req = requests.get(FORECAST_URL, params={'zipCodeList': self._zip, 'format': '24 hourly', 'numDays': 1})
         if forecast_req.ok:
             forecast = ElementTree.fromstring(forecast_req.content)
             self.high_temp = float(forecast.find(".//temperature[@type='maximum']/value[1]").text)
             self.low_temp = float(forecast.find(".//temperature[@type='minimum']/value[1]").text)
+            logging.info("High temperature %1.1f, Low temperature %1.1f" % (self.high_temp, self.low_temp))

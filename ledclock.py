@@ -2,6 +2,8 @@
 import argparse
 import os
 import sys
+import logging
+from logging.handlers import RotatingFileHandler
 from daemonify import Daemon
 from weather import Weather
 from display import Display
@@ -13,7 +15,19 @@ class LedClockDaemon(Daemon):
         super(LedClockDaemon, self).__init__(pidfile=args["pidfile"])
         self._args = args
 
+    def setup_logging(self):
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+        handler = RotatingFileHandler(self._args['logfile'], maxBytes=153600, backupCount=3)
+        handler.setFormatter(formatter)
+
+        root_logger = logging.getLogger()
+        root_logger.setLevel(logging.DEBUG)
+        root_logger.addHandler(handler)
+
     def run(self):
+        self.setup_logging()
+
         weather = Weather(zip=self._args['zip'], station=self._args['station'])
 
         sched = BlockingScheduler()
@@ -27,7 +41,8 @@ class LedClockDaemon(Daemon):
 
 def process_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--pidfile", help="PID file name", type=str, default="/var/lock/ledclock.pid")
+    parser.add_argument("-p", "--pidfile", help="PID file name", type=str, default="/var/run/ledclock.pid")
+    parser.add_argument("-l", "--logfile", help="Log file name", type=str, default="/var/log/ledclock.log")
     parser.add_argument("-d", "--daemon", help="start stop restart", type=str)
     parser.add_argument("-s", "--station", help="NOAA station ID for current weather conditions", default="KLOU")
     parser.add_argument("-z", "--zip", help="ZIP code for weather forecast", default="40207")
