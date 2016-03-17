@@ -8,7 +8,7 @@ FORECAST_URL = "http://graphical.weather.gov/xml/sample_products/browser_interfa
 
 
 class Weather:
-    def __init__(self, zip, station):
+    def __init__(self, scheduler, zip, station):
         self._zip = zip
         self._station = station
 
@@ -17,6 +17,9 @@ class Weather:
         self.low_temp = 0.0
 
         self.update()
+
+        # Update weather every 15 minutes
+        scheduler.add_job(self.update, 'cron', minute='*/15')
 
     def update(self):
         logging.info("Updating weather")

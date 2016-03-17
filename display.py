@@ -5,11 +5,12 @@ from rgbmatrix import RGBMatrix
 
 
 class Display(threading.Thread):
-    def __init__(self, weather, group=None, target=None, name=None, verbose=None):
-        threading.Thread.__init__(self, group=group, target=target, name=name, verbose=verbose)
+    def __init__(self, weather, dimmer):
+        threading.Thread.__init__(self)
         self.setDaemon(True)
 
         self._weather = weather
+        self._dimmer = dimmer
 
         # Configure LED matrix driver
         self._matrix = RGBMatrix(32, 2, 1)
@@ -56,3 +57,4 @@ class Display(threading.Thread):
             self._draw(canvas)
             time.sleep(0.05)
             canvas = self._matrix.SwapOnVSync(canvas)
+            self._matrix.brightness = self._dimmer.brightness

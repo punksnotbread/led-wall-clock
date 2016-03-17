@@ -7,6 +7,7 @@ from logging.handlers import RotatingFileHandler
 from daemonify import Daemon
 from weather import Weather
 from display import Display
+from dimmer import Dimmer
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 
@@ -28,15 +29,13 @@ class LedClockDaemon(Daemon):
     def run(self):
         self.setup_logging()
 
-        weather = Weather(zip=self._args['zip'], station=self._args['station'])
-
-        sched = BlockingScheduler()
-        sched.add_job(weather.update, 'cron', minute='*/15')
-
-        display = Display(weather)
+        scheduler = BlockingScheduler()
+        weather = Weather(scheduler, zip=self._args['zip'], station=self._args['station'])
+        dimmer = Dimmer(scheduler)
+        display = Display(weather, dimmer)
 
         display.start()
-        sched.start()
+        scheduler.start()
 
 
 def process_args():
