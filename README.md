@@ -7,7 +7,7 @@ A fancy RGB LED matrix wall clock controlled by a Raspberry Pi.
 - [64x32 RGB LED Matrix - 5mm pitch](https://www.adafruit.com/products/2277)
 - [Adafruit RGB Matrix + Real Time Clock Hat](https://www.adafruit.com/product/2345)
 - Raspberry Pi 2 Model B
-- Acrylic Mount Plate
+- [Acrylic Mount Plate](http://www.ponoko.com/build-your-own/furniture/led-wall-clock-plate-13293#)
 
 # Dependencies
 Python libraries
