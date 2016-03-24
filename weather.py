@@ -7,7 +7,7 @@ WEATHER_URL = "http://w1.weather.gov/xml/current_obs/display.php"
 FORECAST_URL = "http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdBrowserClientByDay.php"
 
 
-class Weather:
+class Weather(object):
     def __init__(self, scheduler, zip, station):
         self._zip = zip
         self._station = station

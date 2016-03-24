@@ -2,7 +2,7 @@ import ephem
 import logging
 
 
-class Dimmer:
+class Dimmer(object):
     def __init__(self, scheduler):
         self._observer = ephem.Observer()
         self._observer.pressure = 0
