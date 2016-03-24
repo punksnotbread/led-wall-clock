@@ -1,5 +1,5 @@
 # led-wall-clock
-A fancy RGB LED matrix wall clock driven with a RaspberryPi.
+A fancy RGB LED matrix wall clock controlled by a Raspberry Pi.
 
 ![picture](https://cloud.githubusercontent.com/assets/8151645/14007063/6deb76d6-f149-11e5-8a30-1efc0c79715d.jpg)
 
@@ -17,7 +17,7 @@ Python libraries
 - daemonify
 
 # RGB Matrix Hat Modification
-The brightness can be controlled by pulse-width-modulating the OE pin of the LED matrix.  Unfortunately, the RGB matrix hat does not have the PWM pin of the Raspberry Pi connected to a PWM output.  To correct this, jumper a wire between pins labeled 4 and 18.
+The brightness can be controlled by pulse-width-modulating the OE pin of the LED matrix.  Unfortunately, the hat does not have the PWM pin of the Raspberry Pi connected to the OE pin.  To correct this, jumper a wire between pins labeled 4 and 18 on the hat.
 
 # LED Matrix Library Build Instructions
 Clone the rpi-rgb-led-matrix library to your Raspberry Pi
@@ -42,4 +42,9 @@ DEFINES+=-DADAFRUIT_RGBMATRIX_HAT
 # close together.
 # Then uncomment the following define and recompile.
 DEFINES+=-DADAFRUIT_RGBMATRIX_HAT_PWM
+```
+Build and install the Python library
+```
+make build-python
+make install-python
 ```
