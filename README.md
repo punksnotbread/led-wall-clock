@@ -19,7 +19,7 @@ Python libraries
 # RGB Matrix Hat Modification
 The brightness can be controlled by pulse-width-modulating the OE pin of the LED matrix.  Unfortunately, the hat does not have the PWM pin of the Raspberry Pi connected to the OE pin.  To correct this, jumper a wire between pins labeled 4 and 18 on the hat.
 
-# LED Matrix Library Build Instructions
+# RGB Matrix Library Build Instructions
 Clone the rpi-rgb-led-matrix library to your Raspberry Pi
 ```
 git clone https://github.com/hzeller/rpi-rgb-led-matrix.git
@@ -46,5 +46,10 @@ DEFINES+=-DADAFRUIT_RGBMATRIX_HAT_PWM
 Build and install the Python library
 ```
 make build-python
-make install-python
+sudo make install-python
+```
+# Starting the Clock
+To start the clock as a daemon
+```
+sudo ./ledclock.py -d start
 ```
