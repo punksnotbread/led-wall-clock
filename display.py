@@ -36,7 +36,7 @@ class Display(threading.Thread):
         graphics.DrawText(canvas, self._font_large, 1, 13, self._white, time.strftime("%-2I:%M"))
         graphics.DrawText(canvas, self._font_small, 53, 13, self._white, time.strftime("%p"))
 
-        graphics.DrawText(canvas, self._font_small, 2, 22, self._white, time.strftime("%a %b %d"))
+        graphics.DrawText(canvas, self._font_small, 2, 22, self._white, time.strftime("%a %b %-d"))
 
         temp_str = "%3.0f" % self._weather.cur_temp
         graphics.DrawText(canvas, self._font_small, 0, 31, self._white, temp_str)
