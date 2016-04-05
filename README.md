@@ -54,3 +54,8 @@ To start the clock as a daemon
 cd led-wall-clock
 sudo ./ledclock.py -d start
 ```
+# To Do
+- Use a more generic weather API
+- Move configuration to a separate file
+- Implement dimming based on TSL2591 light sensor
+- Add forecast screen (toggle on a timer)
