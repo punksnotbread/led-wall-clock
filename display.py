@@ -19,11 +19,11 @@ class Display(threading.Thread):
 
         # Load fonts
         self._font_large = graphics.Font()
-        self._font_large.LoadFont("fonts/10x20.bdf")
+        self._font_large.LoadFont("rpi-rgb-led-matrix/fonts/10x20.bdf")
         self._font_small = graphics.Font()
-        self._font_small.LoadFont("fonts/6x10.bdf")
+        self._font_small.LoadFont("rpi-rgb-led-matrix/fonts/6x10.bdf")
         self._font_tiny = graphics.Font()
-        self._font_tiny.LoadFont("fonts/4x6.bdf")
+        self._font_tiny.LoadFont("rpi-rgb-led-matrix/fonts/4x6.bdf")
 
         # Define colors
         self._white = graphics.Color(255, 255, 255)
