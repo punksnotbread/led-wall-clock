@@ -20,10 +20,10 @@ Python libraries
 The brightness can be controlled by pulse-width-modulating the OE pin of the LED matrix.  Unfortunately, the hat does not have the PWM pin of the Raspberry Pi connected to the OE pin.  To correct this, jumper a wire between pins labeled 4 and 18 on the hat.
 
 # RGB Matrix Library Build Instructions
-Clone the rpi-rgb-led-matrix library to your Raspberry Pi
+Clone this repository and submodules to your Raspberry Pi
 ```
-git clone https://github.com/hzeller/rpi-rgb-led-matrix.git
-cd rpi-rgb-led-matrix
+git clone --recursive https://github.com/jeffkub/led-wall-clock.git
+cd led-wall-clock/rpi-rgb-led-matrix
 ```
 Edit `lib/Makefile` and uncomment the following two DEFINES
 ```
@@ -51,5 +51,6 @@ sudo make install-python
 # Starting the Clock
 To start the clock as a daemon
 ```
+cd led-wall-clock
 sudo ./ledclock.py -d start
 ```
