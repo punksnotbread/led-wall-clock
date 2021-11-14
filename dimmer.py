@@ -1,5 +1,6 @@
 import ephem
 import logging
+import time
 
 
 class Dimmer(object):
@@ -7,8 +8,8 @@ class Dimmer(object):
         self._observer = ephem.Observer()
         self._observer.pressure = 0
         self._observer.horizon = '-6'
-        self._observer.lat = '38.262469'
-        self._observer.lon = '-85.648625'
+        self._observer.lat = '54.687157'
+        self._observer.lon = '25.279652'
 
         self.brightness = 100
 
@@ -26,7 +27,7 @@ class Dimmer(object):
         if morning < night:
             # Morning is sooner, so it must be night
             logging.info("It is night time")
-            self.brightness = 10
+            self.brightness = 20
         else:
             logging.info("It is day time")
-            self.brightness = 25
+            self.brightness = 50
